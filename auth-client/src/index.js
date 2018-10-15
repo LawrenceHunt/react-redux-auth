@@ -1,16 +1,30 @@
-import React          from 'react'
-import ReactDOM       from 'react-dom'
-import App            from './components/App'
+import React              from 'react'
+import ReactDOM           from 'react-dom'
 import {BrowserRouter,
-        Route}        from 'react-router-dom'
-import Welcome        from './components/Welcome'
-import Signup         from './components/auth/Signup'
+        Route}            from 'react-router-dom'
+import {Provider}         from 'react-redux'
+import {createStore,
+        applyMiddleware}  from 'redux'
+import reduxThunk         from 'redux-thunk'
+
+import Welcome            from './components/Welcome'
+import Signup             from './components/auth/Signup'
+import App                from './components/App'
+import reducers           from './reducers'
+
+const store = createStore(
+  reducers,
+  {},
+  applyMiddleware(reduxThunk)
+)
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App>
-      <Route path='/' exact component={Welcome} />
-      <Route path='/signup' component={Signup} />
-    </App>
-  </BrowserRouter>
+  <Provider store={store} >
+    <BrowserRouter>
+      <App>
+        <Route path='/' exact component={Welcome} />
+        <Route path='/signup' component={Signup} />
+      </App>
+    </BrowserRouter>
+  </Provider>
 , document.getElementById('root'))

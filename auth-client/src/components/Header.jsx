@@ -6,7 +6,7 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <Link to={'/'}>Redux Auth</Link>
+        <Link to={'/'}>Home</Link>
         <Link to={'/signup'}>Sign up</Link>
         <Link to={'/signin'}>Sign in</Link>
         <Link to={'/signout'}>Sign out</Link>
